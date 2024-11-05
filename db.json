@@ -1,0 +1,20 @@
+{
+    "expenses": [],
+    "users": [
+      {
+        "id": 1,
+        "name": "Admin",
+        "role": "admin",
+        "username": "admin",
+        "password": "admin"
+      },
+      {
+        "id": 2,
+        "name": "User",
+        "role": "user",
+        "username": "user",
+        "password": "user"
+      }
+    ]
+  }
+  
