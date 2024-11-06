@@ -1,21 +1,18 @@
 // # Configuración principal de Redux y Persistencia
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
-import authReducer from './slices/authSlice';
-import expenseReducer from './slices/expenseSlice';
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
+import expensesReducer from "./slices/expensesSlice";
 
 // Configuración de los reducers combinados
 const rootReducer = combineReducers({
-  auth: authReducer,
-  expenses: expenseReducer,
+  expenses: expensesReducer,
 });
 
 // Configuración de persistencia en localStorage para mantener el estado del auth
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  whitelist: ['auth'], // Solo persiste la autenticación
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -35,3 +32,5 @@ export const persistor = persistStore(store);
 // Tipos para el estado y el dispatch
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export default store;
