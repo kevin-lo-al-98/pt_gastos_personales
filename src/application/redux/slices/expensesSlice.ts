@@ -10,14 +10,20 @@ import {
 import { RootState } from "../store";
 
 interface ExpensesState {
-  expenseSelected: Expense | unknown;
+  expenseSelected: Expense;
   list: Expense[];
   loading: LoadingState;
   error?: string;
 }
 
 const initialState: ExpensesState = {
-  expenseSelected: null,
+  expenseSelected: {
+    id: 0,
+    amount: 0,
+    category: "",
+    date: "",
+    description: ""
+  },
   list: [],
   loading: "idle",
 };

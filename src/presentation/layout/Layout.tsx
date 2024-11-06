@@ -2,12 +2,14 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 // import Sidebar from "./Sidebar";
 import Header from "./Header";
+import SidebarMenu from "./SidebarMenu/SidebarMenu";
+import { FaBars } from "react-icons/fa";
 
 const Layout: React.FC = () => {
   return (
     <div style={{ width: "100%", height: "100%" }}>
       {/* Sidebar Desplegable */}
-      {/* <Sidebar /> */}
+      <SidebarMenu />
       {/* Header Fijo */}
       <Header />
 

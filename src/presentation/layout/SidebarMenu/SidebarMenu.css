@@ -1,0 +1,48 @@
+/* src/presentation/layout/SidebarMenu.css */
+
+.sidebar-menu {
+    width: 250px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #ddd;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .sidebar-menu.open {
+    transform: translateX(0);
+  }
+  
+  .sidebar-menu .toggle-button {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    margin-top: 0;
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .menu-content {
+    padding: 10px;
+  }
+  
+  .menu-content ul {
+    padding: 0;
+  }
+  
+  .menu-content .list-group-item {
+    border: none;
+    padding: 0.75rem 1.25rem;
+  }
+  
+  .menu-content .list-group-item:hover {
+    background-color: #e9ecef;
+  }
+  
+  .sidebar-menu:not(.open) {
+    transform: translateX(-100%);
+  }
+  

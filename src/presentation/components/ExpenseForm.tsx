@@ -1,28 +1,17 @@
 import React, { useMemo } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useSelector } from "react-redux";
-import {
-  addExpense,
-  selectExpensesSlice,
-  updateExpenseThunk
-} from "../../application/redux/slices/expensesSlice";
-import { useNavigate } from "react-router-dom";
+import { selectExpensesSlice } from "../../application/redux/slices/expensesSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { EXPENSE_CATEGORIES } from "../../domain/constants/constants";
-import { useAppDispatch } from "../../application/hooks/useAppDispatch";
 import { Expense } from "../../domain/models/Expense";
 
 interface ExpenseFormProps {
-  expense?: {
-    id: number;
-    amount: number;
-    category: string;
-    date: string;
-    description?: string;
-  };
+  onSubmit: (expenseData: Expense) => void;
 }
-const schema = yup.object().shape({
+
+const schema = yup.object({
   amount: yup
     .number()
     .required("Este es un campo obligatorio.")
@@ -35,44 +24,41 @@ const schema = yup.object().shape({
     .string()
     .required("Este es un campo obligatorio.")
     .typeError("Este campo es incorrecto"),
+  description: yup.string().typeError("Este campo es incorrecto"),
 });
+type FormValues = yup.InferType<typeof schema>;
 
-const ExpenseForm: React.FC<ExpenseFormProps> = () => {
+const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSubmit }) => {
   const { expenseSelected, list } = useSelector(selectExpensesSlice);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormValues>({
     defaultValues: expenseSelected || {
-      amount: "",
+      amount: 0,
       category: "",
       date: "",
       description: "",
     },
     resolver: yupResolver(schema),
   });
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const lastId: number = useMemo(() => {
-    const orderList = [...list].sort((a, b) => a.id - b.id);
-    return (orderList.length && orderList[0]?.id) || 0;
+    const orderList = [...list].sort((a, b) => b.id - a.id);
+    return orderList.length > 0 ? orderList[0].id : 0;
   }, [list]);
 
-  const onSubmit = (data: Expense) => {
-    console.log(data);
-
+  const onSubmitForm: SubmitHandler<FormValues> = (data) => {
     if (expenseSelected) {
-      dispatch(updateExpenseThunk({ ...data, id: expenseSelected.id }));
+      onSubmit({ ...data });
     } else {
-      dispatch(addExpense({ ...data, id: lastId + 1 }));
+      onSubmit({ ...data, id: lastId + 1 });
     }
-    navigate("/");
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="p-3">
+    <form onSubmit={handleSubmit(onSubmitForm)} className="p-3">
       <div className="mb-3">
         <label htmlFor="amount">Monto del gasto</label>
         <input

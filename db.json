@@ -1,27 +1,6 @@
 {
   "expenses": [
     {
-      "date": "2023-05-02",
-      "category": "Transporte",
-      "amount": 5000,
-      "id": "1",
-      "description": "Taxi"
-    },
-    {
-      "date": "2024-05-01",
-      "category": "Entretenimiento",
-      "amount": 2333,
-      "id": "2",
-      "description": "netflix"
-    },
-    {
-      "date": "2023-05-02",
-      "category": "Transporte",
-      "amount": 500,
-      "id": "3",
-      "description": "Taxi"
-    },
-    {
       "id": "4",
       "date": "2024-05-01",
       "category": "Entretenimiento",

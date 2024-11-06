@@ -12,6 +12,14 @@ export const API_ENDPOINTS = {
   USERS: "/users",
 };
 
+// Rutas de navegacion
+export const ROUTES_NAVIGATION = {
+  HOME: "/",
+  EXPENSES_MANAGEMENT: "expenses-management",
+  ADD_EXPENSE: "add-expense",
+  EDIT_EXPENSE: "edit-expense",
+};
+
 // Mensajes de error comunes
 export const ERROR_MESSAGES = {
   NETWORK_ERROR:

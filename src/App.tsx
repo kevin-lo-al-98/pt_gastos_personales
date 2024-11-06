@@ -5,21 +5,34 @@ import HomePage from "./presentation/pages/HomePage";
 import AddExpensePage from "./presentation/pages/AddExpensePage";
 import EditExpensePage from "./presentation/pages/EditExpensePage";
 import ExpenseManagement from "./presentation/pages/ExpenseManagement";
+import { SidebarProvider } from "./presentation/hooks/SidebarContext";
+
 import "./App.css";
+import { ROUTES_NAVIGATION } from "./domain/constants/constants";
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          {/* Define la ruta para HomePage */}
-          <Route index element={<HomePage />} />
-          <Route path="expense-management" element={<ExpenseManagement />} />
-          <Route path="add-expense" element={<AddExpensePage />} />
-          <Route path="edit-expense" element={<EditExpensePage />} />
-        </Route>
-      </Routes>
-    </Router>
+    <SidebarProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route
+              path={ROUTES_NAVIGATION.EXPENSES_MANAGEMENT}
+              element={<ExpenseManagement />}
+            />
+            <Route
+              path={ROUTES_NAVIGATION.ADD_EXPENSE}
+              element={<AddExpensePage />}
+            />
+            <Route
+              path={ROUTES_NAVIGATION.EDIT_EXPENSE}
+              element={<EditExpensePage />}
+            />
+          </Route>
+        </Routes>
+      </Router>
+    </SidebarProvider>
   );
 };
 

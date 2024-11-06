@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../application/redux/store";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { RootState } from "../../application/redux/store";
+
+// Colores para las categorías
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const ExpensePieChart: React.FC = () => {
   const expensesList = useSelector((state: RootState) => state.expenses.list);
@@ -20,9 +23,6 @@ const ExpensePieChart: React.FC = () => {
     name: category,
     value: amount,
   }));
-
-  // Colores para las categorías
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   return (
     <div className="mb-4">

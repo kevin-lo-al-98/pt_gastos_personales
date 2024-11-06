@@ -1,8 +1,8 @@
-// # Configuración principal de Redux y Persistencia
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import expensesReducer from "./slices/expensesSlice";
+import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 
 // Configuración de los reducers combinados
 const rootReducer = combineReducers({
@@ -17,12 +17,13 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// Crear el store con los middleware de Redux y Persistencia
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false, // Evitar advertencias por datos no serializables en Redux Persist
+      serializableCheck:  {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      }, 
     }),
 });
 
