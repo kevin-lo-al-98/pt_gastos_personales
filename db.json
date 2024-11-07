@@ -4,20 +4,6 @@
       "date": "2023-05-02",
       "category": "Transporte",
       "amount": 500,
-      "id": "5",
-      "description": "Taxi"
-    },
-    {
-      "id": "6",
-      "date": "2024-05-01",
-      "category": "Entretenimiento",
-      "amount": 233,
-      "description": "netflix"
-    },
-    {
-      "date": "2023-05-02",
-      "category": "Transporte",
-      "amount": 500,
       "id": "7",
       "description": "Taxi"
     },

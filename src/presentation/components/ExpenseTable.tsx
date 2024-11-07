@@ -6,6 +6,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Expense } from "../../domain/models/Expense";
 import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import Swal from "sweetalert2";
 
 interface ExpenseSummaryProps {
   expenses: Expense[];
@@ -24,7 +25,26 @@ const ExpenseTable: React.FC<ExpenseSummaryProps> = ({
   };
 
   const handleDelete = (id: number) => {
-    dispatch(deleteExpenseThunk(id));
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás deshacer esta acción",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteExpenseThunk(id));
+        Swal.fire({
+          title: "Eliminado",
+          text: "El gasto ha sido eliminado exitosamente.",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+        });
+      }
+    });
   };
   return (
     <div className="table-responsive">

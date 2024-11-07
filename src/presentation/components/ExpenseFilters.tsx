@@ -36,7 +36,7 @@ const ExpenseFilter: React.FC<ExpenseFilterProps> = ({ onFilterChange }) => {
   return (
     <div className="d-flex flex-wrap gap-2 mb-3">
       <select
-        className="form-select w-100"
+        className="form-select w-auto"
         value={category}
         onChange={handleCategoryChange}
       >

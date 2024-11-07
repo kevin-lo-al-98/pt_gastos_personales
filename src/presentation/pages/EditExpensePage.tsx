@@ -11,6 +11,7 @@ import {
 import { Expense } from "../../domain/models/Expense";
 import { ROUTES_NAVIGATION } from "../../domain/constants/constants";
 import { MdArrowBackIos } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const EditExpensePage: React.FC = () => {
   const { expenseSelected } = useSelector(selectExpensesSlice);
@@ -34,19 +35,38 @@ const EditExpensePage: React.FC = () => {
   if (!expenseSelected) {
     return <p>Gasto no encontrado</p>;
   }
+  const handleUpdateExpense = async (updatedExpenseData: Expense) => {
+    try {
+      await dispatch(
+        updateExpenseThunk({
+          expense: updatedExpenseData,
+          id: expenseSelected.id,
+        })
+      );
 
-  const handleUpdateExpense = (updatedExpenseData: Expense) => {
-    dispatch(
-      updateExpenseThunk({
-        expense: updatedExpenseData,
-        id: expenseSelected.id,
-      })
-    );
-    navigate(`/${ROUTES_NAVIGATION.EXPENSES_MANAGEMENT}`); // Redirige a HomePage tras editar el gasto
+      Swal.fire({
+        title: "Gasto Editado",
+        text: "El gasto se ha editado exitosamente.",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "OK",
+      }).then(() => {
+        navigate(`/${ROUTES_NAVIGATION.EXPENSES_MANAGEMENT}`);
+      });
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        title: "Error",
+        text: "Hubo un problema al editar el gasto. Por favor, inténtalo de nuevo.",
+        icon: "error",
+        confirmButtonColor: "#d33",
+        confirmButtonText: "OK",
+      });
+    }
   };
 
   const backPage = () => {
-    navigate(`/${ROUTES_NAVIGATION.EXPENSES_MANAGEMENT}`); // Redirige a HomePage tras agregar el gasto
+    navigate(`/${ROUTES_NAVIGATION.EXPENSES_MANAGEMENT}`);
   };
 
   return (
