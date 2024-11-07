@@ -5,15 +5,24 @@ import { Expense } from "../../domain/models/Expense";
 import ExpenseFilter from "../components/ExpenseFilters";
 import { RootState } from "../../application/redux/store";
 import ExpenseSummary from "../components/ExpenseSummary";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { fetchExpenses } from "../../application/redux/slices/expensesSlice";
 
 const HomePage: React.FC = () => {
-  const expenses = useSelector((state: RootState) => state.expenses.list);
+  const dispatch = useAppDispatch();
+  const { list: expenses, loading } = useSelector(
+    (state: RootState) => state.expenses
+  );
   const [filteredExpenses, setFilteredExpenses] = useState<Expense[]>(expenses);
   const [filters, setFilters] = useState({
     category: "",
     startDate: "",
     endDate: "",
   });
+
+  useEffect(() => {
+    dispatch(fetchExpenses());
+  }, [dispatch]);
 
   useEffect(() => {
     setFilteredExpenses(
@@ -36,8 +45,12 @@ const HomePage: React.FC = () => {
     setFilters(newFilters);
   };
 
+  if (loading === "loading") {
+    return <p>Loading...</p>;
+  }
+
   return (
-    <div className="w-100 h-100 overflow-auto">
+    <div className="w-100 h-100  ">
       <ExpenseSummary expenses={expenses} />
       <ExpenseFilter onFilterChange={handleFilterChange} />
       <ExpenseTable expenses={filteredExpenses} enableActions={false} />

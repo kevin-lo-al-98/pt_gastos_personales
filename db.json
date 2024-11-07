@@ -1,13 +1,6 @@
 {
   "expenses": [
     {
-      "description": "Taxi",
-      "date": "2023-05-02",
-      "category": "Entretenimiento",
-      "amount": 5000,
-      "id": "7"
-    },
-    {
       "id": "8",
       "date": "2024-05-01",
       "category": "Entretenimiento",
@@ -103,6 +96,48 @@
       "category": "Transporte",
       "amount": 500,
       "id": "20",
+      "description": "ropa"
+    },
+    {
+      "date": "2023-05-02",
+      "category": "Transporte",
+      "amount": 500,
+      "id": "21",
+      "description": "ropa"
+    },
+    {
+      "date": "2023-05-02",
+      "category": "Transporte",
+      "amount": 500,
+      "id": "22",
+      "description": "ropa"
+    },
+    {
+      "date": "2023-05-02",
+      "category": "Transporte",
+      "amount": 500,
+      "id": "23",
+      "description": "ropa"
+    },
+    {
+      "date": "2023-05-02",
+      "category": "Transporte",
+      "amount": 500,
+      "id": "24",
+      "description": "ropa"
+    },
+    {
+      "date": "2023-05-02",
+      "category": "Transporte",
+      "amount": 500,
+      "id": "25",
+      "description": "ropa"
+    },
+    {
+      "date": "2023-05-02",
+      "category": "Transporte",
+      "amount": 500,
+      "id": "26",
       "description": "ropa"
     }
   ]

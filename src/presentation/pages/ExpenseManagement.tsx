@@ -7,8 +7,11 @@ import ExpenseTable from "../components/ExpenseTable";
 import { MdAdd } from "react-icons/md";
 import { ROUTES_NAVIGATION } from "../../domain/constants/constants";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { fetchExpenses } from "../../application/redux/slices/expensesSlice";
 
 const HomePage: React.FC = () => {
+  const dispatch = useAppDispatch();
   const expenses = useSelector((state: RootState) => state.expenses.list);
   const navigate = useNavigate();
   const [filteredExpenses, setFilteredExpenses] = useState<Expense[]>(expenses);
@@ -17,6 +20,9 @@ const HomePage: React.FC = () => {
     startDate: "",
     endDate: "",
   });
+  useEffect(() => {
+    dispatch(fetchExpenses());
+  }, [dispatch]);
 
   useEffect(() => {
     setFilteredExpenses(
@@ -42,7 +48,7 @@ const HomePage: React.FC = () => {
     navigate(`/${ROUTES_NAVIGATION.ADD_EXPENSE}`); // Redirige a HomePage tras agregar el gasto
   };
   return (
-    <div className="w-100 h-100 overflow-auto">
+    <div className="w-100 h-100  ">
       <div className="p-3 d-flex w-100 align-items-center justify-content-end">
         <button onClick={goToPage}>
           <div className="d-flex align-items-center column-gap-1">

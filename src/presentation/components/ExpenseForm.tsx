@@ -58,7 +58,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitForm)} className="p-3">
+    <form onSubmit={handleSubmit(onSubmitForm)} className="p-3 ">
       <div className="mb-3">
         <label htmlFor="amount">Monto del gasto</label>
         <input
