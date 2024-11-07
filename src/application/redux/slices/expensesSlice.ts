@@ -22,7 +22,7 @@ const initialState: ExpensesState = {
     amount: 0,
     category: "",
     date: "",
-    description: ""
+    description: "",
   },
   list: [],
   loading: "idle",
@@ -62,24 +62,27 @@ const expensesSlice = createSlice({
   name: "expenses",
   initialState,
   reducers: {
-    setExpenseSelected(state, action: PayloadAction<Expense | null>) {
+    setExpenseSelected(state, action: PayloadAction<Expense>) {
       state.expenseSelected = action.payload;
+    },
+    resetExpenseSelected(state) {
+      state.expenseSelected = initialState.expenseSelected;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchExpenses.pending, (state) => {
-        state.loading = true;
+        state.loading = "loading";
       })
       .addCase(
         fetchExpenses.fulfilled,
         (state, action: PayloadAction<Expense[]>) => {
-          state.loading = false;
+          state.loading = "succeeded";
           state.list = action.payload;
         }
       )
       .addCase(fetchExpenses.rejected, (state, action) => {
-        state.loading = false;
+        state.loading = "failed";
         state.error = action.error.message;
       })
       .addCase(
@@ -110,7 +113,7 @@ const expensesSlice = createSlice({
   },
 });
 
-export const { setExpenseSelected } = expensesSlice.actions;
+export const { setExpenseSelected, resetExpenseSelected, } = expensesSlice.actions;
 export const selectExpensesSlice = (state: RootState) => {
   return state.expenses;
 };

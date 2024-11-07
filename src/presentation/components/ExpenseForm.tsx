@@ -116,7 +116,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSubmit }) => {
       </div>
 
       <button type="submit" className="btn btn-primary">
-        {expenseSelected ? "Actualizar Gasto" : "Agregar Gasto"}
+        {expenseSelected?.id ? "Actualizar Gasto" : "Agregar Gasto"}
       </button>
     </form>
   );

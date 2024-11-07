@@ -4,9 +4,13 @@ import { Expense } from "../../domain/models/Expense";
 import ExpenseFilter from "../components/ExpenseFilters";
 import { RootState } from "../../application/redux/store";
 import ExpenseTable from "../components/ExpenseTable";
+import { MdAdd } from "react-icons/md";
+import { ROUTES_NAVIGATION } from "../../domain/constants/constants";
+import { useNavigate } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   const expenses = useSelector((state: RootState) => state.expenses.list);
+  const navigate = useNavigate();
   const [filteredExpenses, setFilteredExpenses] = useState<Expense[]>(expenses);
   const [filters, setFilters] = useState({
     category: "",
@@ -34,9 +38,19 @@ const HomePage: React.FC = () => {
   const handleFilterChange = (newFilters: typeof filters) => {
     setFilters(newFilters);
   };
-
+  const goToPage = () => {
+    navigate(`/${ROUTES_NAVIGATION.ADD_EXPENSE}`); // Redirige a HomePage tras agregar el gasto
+  };
   return (
     <div className="homepage">
+      <div className="p-3 d-flex w-100 align-items-center justify-content-end">
+        <button onClick={goToPage}>
+          <div className="d-flex align-items-center column-gap-1">
+            <MdAdd size={24} />
+            <span>Añadir Gasto</span>
+          </div>
+        </button>
+      </div>
       <ExpenseFilter onFilterChange={handleFilterChange} />
       <ExpenseTable expenses={filteredExpenses} enableActions={true} />
     </div>

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Expense } from "../../domain/models/Expense";
 import ExpenseFilter from "../components/ExpenseFilters";
 import { RootState } from "../../application/redux/store";
+import ExpenseSummary from "../components/ExpenseSummary";
 
 const HomePage: React.FC = () => {
   const expenses = useSelector((state: RootState) => state.expenses.list);
@@ -37,7 +38,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage">
-      
+      <ExpenseSummary expenses={expenses} />
       <ExpenseFilter onFilterChange={handleFilterChange} />
       <ExpenseTable expenses={filteredExpenses} enableActions={false} />
     </div>

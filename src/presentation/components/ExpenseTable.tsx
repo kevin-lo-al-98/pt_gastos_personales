@@ -41,25 +41,27 @@ const ExpenseTable: React.FC<ExpenseSummaryProps> = ({
         <tbody className="overflow-auto">
           {expenses.map((expense) => (
             <tr key={expense.id}>
-              <td>${expense.amount}</td>
+              <td className="fw-bold">${expense.amount}</td>
               <td>
-                <div className="">{expense.category}</div>
+                <div className="d-flex align-content-stretch  align-items-center">
+                  {expense.category}
+                </div>
               </td>
               <td>
-                <div className="w-100">{expense.date}</div>
+                <div style={{ minWidth: "100px" }}>{expense.date}</div>
               </td>
               <td>{expense.description || "N/A"}</td>
               {enableActions && (
                 <td>
-                  <div className="d-flex gap-2">
+                  <div className="d-flex flex-column flex-md-row gap-2">
                     <button
-                      className="btn btn-sm btn-warning"
+                      className="btn btn-md btn-warning"
                       onClick={() => handleEdit(expense)}
                     >
                       Editar
                     </button>
                     <button
-                      className="btn btn-sm btn-danger"
+                      className="btn btn-md btn-danger"
                       onClick={() => handleDelete(expense.id)}
                     >
                       Eliminar

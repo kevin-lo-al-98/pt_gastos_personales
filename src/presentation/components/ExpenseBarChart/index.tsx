@@ -11,13 +11,13 @@ import {
 } from "recharts";
 import { Expense } from "../../../domain/models/Expense";
 
-interface ExpenseSummaryProps {
+interface ExpenseBarChartProps {
   expenses: Expense[];
 }
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
-const ExpenseSummary: React.FC<ExpenseSummaryProps> = ({ expenses }) => {
+const ExpenseBarChart: React.FC<ExpenseBarChartProps> = ({ expenses }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   // Función para actualizar el estado según el ancho de la pantalla
@@ -87,4 +87,4 @@ const ExpenseSummary: React.FC<ExpenseSummaryProps> = ({ expenses }) => {
   );
 };
 
-export default ExpenseSummary;
+export default ExpenseBarChart;

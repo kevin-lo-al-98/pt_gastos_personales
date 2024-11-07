@@ -34,9 +34,9 @@ const ExpenseFilter: React.FC<ExpenseFilterProps> = ({ onFilterChange }) => {
   };
 
   return (
-    <div className="expense-filter d-flex gap-2 mb-3">
+    <div className="d-flex flex-wrap gap-2 mb-3">
       <select
-        className="form-select"
+        className="form-select w-100"
         value={category}
         onChange={handleCategoryChange}
       >
@@ -47,6 +47,7 @@ const ExpenseFilter: React.FC<ExpenseFilterProps> = ({ onFilterChange }) => {
           </option>
         ))}
       </select>
+      <div className="d-flex column-gap-2">
       <input
         type="date"
         className="form-control"
@@ -61,6 +62,7 @@ const ExpenseFilter: React.FC<ExpenseFilterProps> = ({ onFilterChange }) => {
         onChange={handleEndDateChange}
         placeholder="Fecha de fin"
       />
+      </div>
     </div>
   );
 };
