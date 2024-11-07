@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Expense } from "../../domain/models/Expense";
@@ -39,7 +38,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="homepage">
       <ExpenseFilter onFilterChange={handleFilterChange} />
-      <ExpenseTable expenses={filteredExpenses} />
+      <ExpenseTable expenses={filteredExpenses} enableActions={true} />
     </div>
   );
 };

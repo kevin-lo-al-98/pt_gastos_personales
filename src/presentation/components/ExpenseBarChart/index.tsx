@@ -9,7 +9,6 @@ import {
   Cell,
   LabelList,
 } from "recharts";
-// import "./ExpenseSummary.css";
 import { Expense } from "../../../domain/models/Expense";
 
 interface ExpenseSummaryProps {
@@ -41,7 +40,7 @@ const ExpenseSummary: React.FC<ExpenseSummaryProps> = ({ expenses }) => {
     {}
   );
 
-  const data = Object.keys(categoryTotals).map((category, index) => ({
+  const data = Object.keys(categoryTotals).map((category) => ({
     name: category,
     value: categoryTotals[category],
   }));

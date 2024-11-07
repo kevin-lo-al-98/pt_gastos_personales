@@ -16,8 +16,10 @@ export const API_ENDPOINTS = {
 export const ROUTES_NAVIGATION = {
   HOME: "/",
   EXPENSES_MANAGEMENT: "expenses-management",
+  EXPENSES_CHART: "expenses-chart",
   ADD_EXPENSE: "add-expense",
   EDIT_EXPENSE: "edit-expense",
+  
 };
 
 // Mensajes de error comunes

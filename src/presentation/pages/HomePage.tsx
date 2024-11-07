@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ExpenseList from "../components/ExpenseList";
-import ExpenseSummary from "../components/ExpenseSummary";
+import ExpenseTable from "../components/ExpenseTable";
 import { useSelector } from "react-redux";
 import { Expense } from "../../domain/models/Expense";
 import ExpenseFilter from "../components/ExpenseFilters";
@@ -38,9 +37,9 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage">
+      
       <ExpenseFilter onFilterChange={handleFilterChange} />
-      <ExpenseSummary expenses={filteredExpenses} />
-      <ExpenseList expenses={filteredExpenses} />
+      <ExpenseTable expenses={filteredExpenses} enableActions={false} />
     </div>
   );
 };

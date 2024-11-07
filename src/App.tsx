@@ -6,9 +6,9 @@ import AddExpensePage from "./presentation/pages/AddExpensePage";
 import EditExpensePage from "./presentation/pages/EditExpensePage";
 import ExpenseManagement from "./presentation/pages/ExpenseManagement";
 import { SidebarProvider } from "./presentation/hooks/SidebarContext";
-
-import "./App.css";
 import { ROUTES_NAVIGATION } from "./domain/constants/constants";
+import ExpenseChart from "./presentation/pages/ExpenseChart";
+import "./App.css";
 
 const App: React.FC = () => {
   return (
@@ -20,6 +20,10 @@ const App: React.FC = () => {
             <Route
               path={ROUTES_NAVIGATION.EXPENSES_MANAGEMENT}
               element={<ExpenseManagement />}
+            />
+            <Route
+              path={ROUTES_NAVIGATION.EXPENSES_CHART}
+              element={<ExpenseChart />}
             />
             <Route
               path={ROUTES_NAVIGATION.ADD_EXPENSE}

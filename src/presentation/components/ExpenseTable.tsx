@@ -9,8 +9,12 @@ import { useAppDispatch } from "../../application/hooks/useAppDispatch";
 
 interface ExpenseSummaryProps {
   expenses: Expense[];
+  enableActions: boolean;
 }
-const ExpenseTable: React.FC<ExpenseSummaryProps> = ({ expenses }) => {
+const ExpenseTable: React.FC<ExpenseSummaryProps> = ({
+  expenses,
+  enableActions,
+}) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const handleEdit = (expense: Expense) => {
@@ -25,13 +29,13 @@ const ExpenseTable: React.FC<ExpenseSummaryProps> = ({ expenses }) => {
   return (
     <div className="table-responsive">
       <table className="table table-sm table-hover">
-        <thead>
+        <thead className="table-light">
           <tr>
             <th>Monto</th>
             <th>Categoría</th>
             <th>Fecha</th>
             <th>Descripción</th>
-            <th>Acciones</th>
+            {enableActions && <th>Acciones</th>}
           </tr>
         </thead>
         <tbody className="overflow-auto">
@@ -41,24 +45,28 @@ const ExpenseTable: React.FC<ExpenseSummaryProps> = ({ expenses }) => {
               <td>
                 <div className="">{expense.category}</div>
               </td>
-              <td>{expense.date}</td>
-              <td>{expense.description || "N/A"}</td>
               <td>
-                <div className="d-flex gap-2">
-                  <button
-                    className="btn btn-sm btn-warning"
-                    onClick={() => handleEdit(expense)}
-                  >
-                    Editar
-                  </button>
-                  <button
-                    className="btn btn-sm btn-danger"
-                    onClick={() => handleDelete(expense.id)}
-                  >
-                    Eliminar
-                  </button>
-                </div>
+                <div className="w-100">{expense.date}</div>
               </td>
+              <td>{expense.description || "N/A"}</td>
+              {enableActions && (
+                <td>
+                  <div className="d-flex gap-2">
+                    <button
+                      className="btn btn-sm btn-warning"
+                      onClick={() => handleEdit(expense)}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className="btn btn-sm btn-danger"
+                      onClick={() => handleDelete(expense.id)}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

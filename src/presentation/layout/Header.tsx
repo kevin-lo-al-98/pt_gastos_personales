@@ -8,9 +8,11 @@ const Header: React.FC = () => {
   return (
     <nav className="navbar p-3 shadow-sm">
       <div className="container-fluid">
-        <button className="btn btn-link text-dark" onClick={toggleSidebar}>
-          <FaBars size={24} />
-        </button>
+        <div className="w-auto d-flex justify-content-end">
+          <button className="btn btn-primary  rounded-1 toggle-button" onClick={toggleSidebar}>
+            <FaBars size={24} />
+          </button>
+        </div>
         <a className="navbar-brand" href="#">
           Aplicación de gastos
         </a>

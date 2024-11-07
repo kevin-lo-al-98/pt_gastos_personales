@@ -1,32 +1,63 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSidebar } from "../../hooks/SidebarContext";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaHome } from "react-icons/fa";
+import { GiCash } from "react-icons/gi";
+import { IoBarChartSharp } from "react-icons/io5";
 import "./SidebarMenu.css";
 import { ROUTES_NAVIGATION } from "../../../domain/constants/constants";
+
 const SidebarMenu: React.FC = () => {
   const { isOpen, toggleSidebar } = useSidebar();
-
+  const classNameActive = ({ isActive }: { isActive: boolean }) => {
+    return `text-decoration-none list-group-item ${
+      isActive ? "bg-primary text-white" : "bg-light text-secondary"
+    }`;
+  };
   return (
-    <div className={`sidebar-menu ${isOpen ? "open" : ""}`}>
-      <button className="btn btn-primary toggle-button" onClick={toggleSidebar}>
-        <FaBars size={24} />
-      </button>
+    <div
+      className={`sidebar-menu bg-light bg-gradient ${isOpen ? "open" : ""}`}
+    >
+      <div className="p-3 w-auto d-flex justify-content-end">
+        <button
+          className="btn btn-primary rounded-1 w-auto toggle-button"
+          onClick={toggleSidebar}
+        >
+          <FaBars size={24} />
+        </button>
+      </div>
       <div className={`menu-content p-0 ${isOpen ? "d-block" : "d-none"}`}>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            <Link to={ROUTES_NAVIGATION.HOME} className="text-decoration-none">
-              Inicio
-            </Link>
-          </li>
-          <li className="list-group-item">
-            <Link
-              to={`/${ROUTES_NAVIGATION.EXPENSES_MANAGEMENT}`}
-              className="text-decoration-none"
-            >
-              Gestión de gastos
-            </Link>
-          </li>
+          <NavLink
+            to={ROUTES_NAVIGATION.HOME}
+            className={classNameActive}
+            onClick={toggleSidebar}
+          >
+            <div className="d-flex column-gap-3">
+              <FaHome size={20} />
+              <span>Inicio</span>
+            </div>
+          </NavLink>
+          <NavLink
+            to={`/${ROUTES_NAVIGATION.EXPENSES_MANAGEMENT}`}
+            className={classNameActive}
+            onClick={toggleSidebar}
+          >
+            <div className="d-flex column-gap-3">
+              <GiCash size={20} />
+              <span>Gestión de gastos</span>
+            </div>
+          </NavLink>
+          <NavLink
+            to={`/${ROUTES_NAVIGATION.EXPENSES_CHART}`}
+            className={classNameActive}
+            onClick={toggleSidebar}
+          >
+            <div className="d-flex column-gap-3">
+              <IoBarChartSharp size={20} />
+              <span>Gráfica de gastos</span>
+            </div>
+          </NavLink>
         </ul>
       </div>
     </div>
