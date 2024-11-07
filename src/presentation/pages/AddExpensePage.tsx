@@ -35,7 +35,7 @@ const AddExpensePage: React.FC = () => {
     }
   };
   const backPage = () => {
-    navigate(`/${ROUTES_NAVIGATION.EXPENSES_MANAGEMENT}`); // Redirige a HomePage tras agregar el gasto
+    navigate(`/${ROUTES_NAVIGATION.EXPENSES_MANAGEMENT}`);
   };
   return (
     <div className="container">

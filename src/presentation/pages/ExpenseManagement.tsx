@@ -42,7 +42,7 @@ const HomePage: React.FC = () => {
     navigate(`/${ROUTES_NAVIGATION.ADD_EXPENSE}`); // Redirige a HomePage tras agregar el gasto
   };
   return (
-    <div className="homepage">
+    <div className="w-100 h-100 overflow-auto">
       <div className="p-3 d-flex w-100 align-items-center justify-content-end">
         <button onClick={goToPage}>
           <div className="d-flex align-items-center column-gap-1">

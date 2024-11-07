@@ -1,4 +1,5 @@
 import React from "react";
+import { FixedSizeList as List } from "react-window";
 import {
   deleteExpenseThunk,
   setExpenseSelected,
@@ -12,15 +13,16 @@ interface ExpenseSummaryProps {
   expenses: Expense[];
   enableActions: boolean;
 }
+
 const ExpenseTable: React.FC<ExpenseSummaryProps> = ({
   expenses,
   enableActions,
 }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const handleEdit = (expense: Expense) => {
     dispatch(setExpenseSelected(expense));
-
     navigate("/edit-expense");
   };
 
@@ -47,8 +49,8 @@ const ExpenseTable: React.FC<ExpenseSummaryProps> = ({
     });
   };
   return (
-    <div className="table-responsive">
-      <table className="table table-sm table-hover">
+    <div className="table-responsive w-100">
+      <table className="table table-sm table-hover w-100">
         <thead className="table-light">
           <tr>
             <th>Monto</th>
@@ -58,7 +60,10 @@ const ExpenseTable: React.FC<ExpenseSummaryProps> = ({
             {enableActions && <th>Acciones</th>}
           </tr>
         </thead>
-        <tbody className="overflow-auto">
+        <tbody
+          className="  w-100"
+          style={{ height: "400px" }}
+        >
           {expenses.map((expense) => (
             <tr key={expense.id}>
               <td className="fw-bold">${expense.amount}</td>
@@ -91,6 +96,7 @@ const ExpenseTable: React.FC<ExpenseSummaryProps> = ({
               )}
             </tr>
           ))}
+
         </tbody>
       </table>
     </div>

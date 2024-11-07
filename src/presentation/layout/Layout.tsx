@@ -2,15 +2,16 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import SidebarMenu from "./SidebarMenu/SidebarMenu";
-
+import "./layout.css";
 const Layout: React.FC = () => {
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div className="w-100 h-100  overflow-auto">
       <SidebarMenu />
       <Header />
-
-      <main className="p-2 w-100 h-100 overflow-auto">
-        <Outlet />
+      <main className="main-content w-100">
+        <div className="w-100 h-100 ">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

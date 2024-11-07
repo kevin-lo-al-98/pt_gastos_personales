@@ -20,10 +20,10 @@ const SidebarMenu: React.FC = () => {
     >
       <div className="p-3 w-auto d-flex justify-content-end">
         <button
-          className="btn btn-primary rounded-1 w-auto toggle-button"
+          className="btn btn-link  rounded-1 w-auto "
           onClick={toggleSidebar}
         >
-          <FaBars size={24} />
+          <FaBars size={26} />
         </button>
       </div>
       <div className={`menu-content p-0 ${isOpen ? "d-block" : "d-none"}`}>

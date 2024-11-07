@@ -113,7 +113,7 @@ const expensesSlice = createSlice({
   },
 });
 
-export const { setExpenseSelected, resetExpenseSelected, } = expensesSlice.actions;
+export const { setExpenseSelected, resetExpenseSelected } = expensesSlice.actions;
 export const selectExpensesSlice = (state: RootState) => {
   return state.expenses;
 };

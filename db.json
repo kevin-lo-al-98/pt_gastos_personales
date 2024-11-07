@@ -1,11 +1,11 @@
 {
   "expenses": [
     {
+      "description": "Taxi",
       "date": "2023-05-02",
-      "category": "Transporte",
-      "amount": 500,
-      "id": "7",
-      "description": "Taxi"
+      "category": "Entretenimiento",
+      "amount": 5000,
+      "id": "7"
     },
     {
       "id": "8",
@@ -103,7 +103,7 @@
       "category": "Transporte",
       "amount": 500,
       "id": "20",
-      "description": "Taxi"
+      "description": "ropa"
     }
   ]
 }

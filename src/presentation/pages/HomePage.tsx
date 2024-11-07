@@ -37,7 +37,7 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="homepage">
+    <div className="w-100 h-100 overflow-auto">
       <ExpenseSummary expenses={expenses} />
       <ExpenseFilter onFilterChange={handleFilterChange} />
       <ExpenseTable expenses={filteredExpenses} enableActions={false} />
