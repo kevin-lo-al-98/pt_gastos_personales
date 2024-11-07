@@ -1,5 +1,4 @@
 import React from "react";
-import { FixedSizeList as List } from "react-window";
 import {
   deleteExpenseThunk,
   setExpenseSelected,
@@ -60,10 +59,7 @@ const ExpenseTable: React.FC<ExpenseSummaryProps> = ({
             {enableActions && <th>Acciones</th>}
           </tr>
         </thead>
-        <tbody
-          className="  w-100"
-          style={{ height: "400px" }}
-        >
+        <tbody className="  w-100" style={{ height: "400px" }}>
           {expenses.map((expense) => (
             <tr key={expense.id}>
               <td className="fw-bold">${expense.amount}</td>
@@ -96,7 +92,6 @@ const ExpenseTable: React.FC<ExpenseSummaryProps> = ({
               )}
             </tr>
           ))}
-
         </tbody>
       </table>
     </div>

@@ -21,6 +21,7 @@ src/
 │ └── services/ # Servicios que interactúan con la API (ej. expenseService para CRUD de gastos)
 ├── presentation/ # Capa de Presentación
 │ ├──components/ # Componentes de presentación reutilizables
+│ │ └── tests/ # Pruebas de los componentes de presentación
 │ ├── layout/ # Componentes de disposición y estructura general de la UI
 │ ├── hooks/ # Hooks específicos para la UI
 │ └── pages/ # Páginas principales de la aplicación
@@ -85,6 +86,19 @@ Para ejecutar la aplicación en tu entorno local, sigue estos pasos:
 Si la aplicación necesita configurar variables de entorno para el cliente de API u otras configuraciones, crea un archivo .env en la raíz del proyecto con las siguientes variables (ejemplo):
 
 REACT_APP_API_URL=http://localhost:5000
+
+### Ejecución de las Pruebas
+
+- Asegúrate de tener instaladas todas las dependencias del proyecto:
+ ```bash
+  npm install
+  ```
+
+- Ejecuta todas las pruebas unitarias con el siguiente comando:
+ ```bash
+  npm test
+  ```
+  Esto correrá Jest, el framework de pruebas, y buscará automáticamente todos los archivos con la extensión .test.tsx o .test.ts en el proyecto.
 
 # Pasos opcionales para la configuración de React + TypeScript + Vite
 

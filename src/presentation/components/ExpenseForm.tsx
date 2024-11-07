@@ -50,11 +50,11 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSubmit }) => {
   }, [list]);
 
   const onSubmitForm: SubmitHandler<FormValues> = (data) => {
-    if (expenseSelected) {
-      onSubmit({ ...data });
-    } else {
-      onSubmit({ ...data, id: lastId + 1 });
-    }
+    const expenseData: Expense = {
+      ...data,
+      id: expenseSelected?.id ?? lastId + 1, // Usa el `id` existente o genera uno nuevo
+    };
+    onSubmit(expenseData);
   };
 
   return (
@@ -115,7 +115,12 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSubmit }) => {
         />
       </div>
 
-      <button type="submit" className="btn btn-primary">
+      <button
+        type="submit"
+        id="btnSubmit"
+        data-testid="btnSubmit"
+        className="btn btn-primary"
+      >
         {expenseSelected?.id ? "Actualizar Gasto" : "Agregar Gasto"}
       </button>
     </form>
