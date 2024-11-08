@@ -1,9 +1,9 @@
-import { useEffect, useId, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import dayjs from "dayjs";
 import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
 import { Modal, Button, Form } from "react-bootstrap";
 import { es } from "react-day-picker/locale";
+import "react-day-picker/dist/style.css";
 
 interface DatePickerDialogProps {
   selectedDate: string | undefined; // Ahora es un string en formato "YYYY-MM-DD"

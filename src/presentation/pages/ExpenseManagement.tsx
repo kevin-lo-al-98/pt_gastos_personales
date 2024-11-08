@@ -13,6 +13,8 @@ import { fetchExpenses } from "../../application/redux/slices/expensesSlice";
 const HomePage: React.FC = () => {
   const dispatch = useAppDispatch();
   const expenses = useSelector((state: RootState) => state.expenses.list);
+  const loading = useSelector((state: RootState) => state.expenses.loading);
+
   const navigate = useNavigate();
   const [filteredExpenses, setFilteredExpenses] = useState<Expense[]>(expenses);
   const [filters, setFilters] = useState({
@@ -47,6 +49,15 @@ const HomePage: React.FC = () => {
   const goToPage = () => {
     navigate(`/${ROUTES_NAVIGATION.ADD_EXPENSE}`); // Redirige a HomePage tras agregar el gasto
   };
+
+  if (loading === "loading") {
+    return (
+      <div className="w-100 h-100 d-flex justify-content-center align-items-center ">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="w-100 h-100  ">
       <div className="p-3 d-flex w-100 align-items-center justify-content-end">

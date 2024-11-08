@@ -70,7 +70,7 @@ const ExpenseBarChart: React.FC<ExpenseBarChartProps> = ({ expenses }) => {
           <Tooltip />
 
           <Bar dataKey="value" fill="#8884d8">
-            {data.map((entry, index) => (
+            {data.map((_, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}

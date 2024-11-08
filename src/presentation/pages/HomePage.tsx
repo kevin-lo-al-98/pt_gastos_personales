@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import ExpenseTable from "../components/ExpenseTable";
 import { useSelector } from "react-redux";
 import { Expense } from "../../domain/models/Expense";
 import ExpenseFilter from "../components/ExpenseFilters";
 import { RootState } from "../../application/redux/store";
-import ExpenseSummary from "../components/ExpenseSummary";
+import ExpenseTable from "../components/ExpenseTable";
 import { useAppDispatch } from "../../application/hooks/useAppDispatch";
 import { fetchExpenses } from "../../application/redux/slices/expensesSlice";
-import dayjs from "dayjs";
+import ExpenseSummary from "../components/ExpenseSummary";
 
 const HomePage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -31,12 +30,12 @@ const HomePage: React.FC = () => {
         const matchesCategory = filters.category
           ? expense.category === filters.category
           : true;
-        const matchesStartDate = dayjs(expense.date).isSameOrBefore(
-          filters.startDate
-        );
-        const matchesEndDate = dayjs(filters.startDate).isSameOrAfter(
-          filters.endDate
-        );
+        const matchesStartDate = filters.startDate
+          ? new Date(expense.date) >= new Date(filters.startDate)
+          : true;
+        const matchesEndDate = filters.endDate
+          ? new Date(expense.date) <= new Date(filters.endDate)
+          : true;
         return matchesCategory && matchesStartDate && matchesEndDate;
       })
     );
@@ -47,7 +46,11 @@ const HomePage: React.FC = () => {
   };
 
   if (loading === "loading") {
-    return <p>Loading...</p>;
+    return (
+      <div className="w-100 h-100 d-flex justify-content-center align-items-center ">
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   return (
