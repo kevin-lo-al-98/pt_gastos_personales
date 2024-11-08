@@ -9,7 +9,6 @@ export const EXPENSE_CATEGORIES = [
 // Rutas de API
 export const API_ENDPOINTS = {
   EXPENSES: "/expenses",
-  USERS: "/users",
 };
 
 // Rutas de navegacion
@@ -19,7 +18,6 @@ export const ROUTES_NAVIGATION = {
   EXPENSES_CHART: "expenses-chart",
   ADD_EXPENSE: "add-expense",
   EDIT_EXPENSE: "edit-expense",
-  
 };
 
 // Mensajes de error comunes
