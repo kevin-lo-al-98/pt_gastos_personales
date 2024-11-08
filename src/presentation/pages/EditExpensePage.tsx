@@ -50,6 +50,7 @@ const EditExpensePage: React.FC = () => {
         icon: "success",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "OK",
+        heightAuto: false,
       }).then(() => {
         navigate(`/${ROUTES_NAVIGATION.EXPENSES_MANAGEMENT}`);
       });
@@ -61,6 +62,7 @@ const EditExpensePage: React.FC = () => {
         icon: "error",
         confirmButtonColor: "#d33",
         confirmButtonText: "OK",
+        heightAuto: false,
       });
     }
   };

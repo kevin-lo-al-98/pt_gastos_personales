@@ -7,12 +7,13 @@ import { RootState } from "../../application/redux/store";
 import ExpenseSummary from "../components/ExpenseSummary";
 import { useAppDispatch } from "../../application/hooks/useAppDispatch";
 import { fetchExpenses } from "../../application/redux/slices/expensesSlice";
+import dayjs from "dayjs";
 
 const HomePage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { list: expenses, loading } = useSelector(
-    (state: RootState) => state.expenses
-  );
+  const expenses = useSelector((state: RootState) => state.expenses.list);
+  const loading = useSelector((state: RootState) => state.expenses.loading);
+
   const [filteredExpenses, setFilteredExpenses] = useState<Expense[]>(expenses);
   const [filters, setFilters] = useState({
     category: "",
@@ -30,12 +31,12 @@ const HomePage: React.FC = () => {
         const matchesCategory = filters.category
           ? expense.category === filters.category
           : true;
-        const matchesStartDate = filters.startDate
-          ? new Date(expense.date) >= new Date(filters.startDate)
-          : true;
-        const matchesEndDate = filters.endDate
-          ? new Date(expense.date) <= new Date(filters.endDate)
-          : true;
+        const matchesStartDate = dayjs(expense.date).isSameOrBefore(
+          filters.startDate
+        );
+        const matchesEndDate = dayjs(filters.startDate).isSameOrAfter(
+          filters.endDate
+        );
         return matchesCategory && matchesStartDate && matchesEndDate;
       })
     );

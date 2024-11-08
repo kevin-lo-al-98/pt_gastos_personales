@@ -35,14 +35,16 @@ const ExpenseTable: React.FC<ExpenseSummaryProps> = ({
       cancelButtonColor: "#d33",
       confirmButtonText: "Sí, eliminar",
       cancelButtonText: "Cancelar",
-    }).then((result) => {
+      heightAuto: false ,
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        dispatch(deleteExpenseThunk(id));
+        await dispatch(deleteExpenseThunk(id));
         Swal.fire({
           title: "Eliminado",
           text: "El gasto ha sido eliminado exitosamente.",
           icon: "success",
           confirmButtonColor: "#3085d6",
+          heightAuto: false,
         });
       }
     });
@@ -59,14 +61,12 @@ const ExpenseTable: React.FC<ExpenseSummaryProps> = ({
             {enableActions && <th>Acciones</th>}
           </tr>
         </thead>
-        <tbody className="  w-100" style={{ height: "400px" }}>
+        <tbody className="w-100 h-100">
           {expenses.map((expense) => (
             <tr key={expense.id}>
               <td className="fw-bold">${expense.amount}</td>
               <td>
-                <div className="d-flex align-content-stretch  align-items-center">
-                  {expense.category}
-                </div>
+                <div className="">{expense.category}</div>
               </td>
               <td>
                 <div style={{ minWidth: "100px" }}>{expense.date}</div>

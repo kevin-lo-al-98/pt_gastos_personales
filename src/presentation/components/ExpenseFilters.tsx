@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { EXPENSE_CATEGORIES } from "../../domain/constants/constants";
+import DatePickerDialog from "./DatePicker/DatePickerDialog";
 
 interface ExpenseFilterProps {
   onFilterChange: (filters: {
@@ -21,16 +22,14 @@ const ExpenseFilter: React.FC<ExpenseFilterProps> = ({ onFilterChange }) => {
     onFilterChange({ category: event.target.value, startDate, endDate });
   };
 
-  const handleStartDateChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setStartDate(event.target.value);
-    onFilterChange({ category, startDate: event.target.value, endDate });
+  const handleStartDateChange = (date: string) => {
+    setStartDate(date);
+    onFilterChange({ category, startDate: date, endDate });
   };
 
-  const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEndDate(event.target.value);
-    onFilterChange({ category, startDate, endDate: event.target.value });
+  const handleEndDateChange = (date: string) => {
+    setEndDate(date);
+    onFilterChange({ category, startDate, endDate: date });
   };
 
   return (
@@ -48,20 +47,14 @@ const ExpenseFilter: React.FC<ExpenseFilterProps> = ({ onFilterChange }) => {
         ))}
       </select>
       <div className="d-flex column-gap-2">
-      <input
-        type="date"
-        className="form-control"
-        value={startDate}
-        onChange={handleStartDateChange}
-        placeholder="Fecha de inicio"
-      />
-      <input
-        type="date"
-        className="form-control"
-        value={endDate}
-        onChange={handleEndDateChange}
-        placeholder="Fecha de fin"
-      />
+        <DatePickerDialog
+          selectedDate={startDate}
+          onDateChange={handleStartDateChange}
+        />
+        <DatePickerDialog
+          selectedDate={endDate}
+          onDateChange={handleEndDateChange}
+        />
       </div>
     </div>
   );

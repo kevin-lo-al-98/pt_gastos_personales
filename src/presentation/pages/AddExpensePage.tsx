@@ -22,15 +22,17 @@ const AddExpensePage: React.FC = () => {
         icon: "success",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "OK",
+        heightAuto: false,
       });
     } catch (error) {
-      console.error(error);
+      console.error("Failed to add expense:", error);
       Swal.fire({
         title: "Error",
         text: "Hubo un problema al agregar el gasto. Por favor, inténtalo de nuevo.",
         icon: "error",
         confirmButtonColor: "#d33",
         confirmButtonText: "OK",
+        heightAuto: false,
       });
     }
   };
