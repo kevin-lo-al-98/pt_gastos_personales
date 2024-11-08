@@ -61,7 +61,7 @@ Para ejecutar la aplicación en tu entorno local, sigue estos pasos:
    ```bash
    npm install
    ```
-3. Inicia el servidor JSON Server (si estás usando json-server para simular una API):
+3. Inicia el servidor JSON Server (si estás usando json-server para simular una API o Usar la url que esta en apiClient para consumir la api de prueba):
    ```bash
    npm run server
    ```
